@@ -4,12 +4,18 @@ class LuisCommands(object):
     confirm = "confirm"
     cancel = "cancel"
 
-    @staticmethod
-    def is_action(intent):
-        return not LuisCommands.isConfimation(intent)
+    confirm_commands = []
 
     @staticmethod
-    def is_confirmed(intent):
+    def requires_confirm(intent):
+        return intent in LuisCommands.confirm_commands
+
+    @staticmethod
+    def is_action(intent):
+        return not LuisCommands.requires_confirm(intent)
+
+    @staticmethod
+    def is_confirm(intent):
         return intent == LuisCommands.confirm
 
     @staticmethod
