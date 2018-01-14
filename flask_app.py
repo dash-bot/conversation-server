@@ -30,8 +30,8 @@ def get_command():
     print("Intent: ", intent)
     if LuisCommands.is_confirmation(intent):
         if session['prev_reply']:
-            print("Previous Intent: ", prev_reply.get_top_intent().get_name())
             prev_reply = LUISResponse(session['prev_reply'])
+            print("Previous Intent: ", prev_reply.get_top_intent().get_name())
         else:
             prev_reply = None
         return confirm_cancel_request(intent, prev_reply)
@@ -46,14 +46,12 @@ def get_command():
 
 
 def confirm_cancel_request(intent, prev_reply):
+    if prev_reply is None:
+        return commands.none(None)
     if LuisCommands.is_confirm(intent):
-        if prev_reply is not None:
-            prev_intent = prev_reply.get_top_intent().get_name().lower()
-            action = getattr(commands, prev_intent)
-            reply = action(prev_reply)
-        else:
-            reply = commands.none(None)
-        return reply
+        prev_intent = prev_reply.get_top_intent().get_name().lower()
+        action = getattr(commands, prev_intent)
+        return action(prev_reply)
     else:
         return "Canceled request"
 
