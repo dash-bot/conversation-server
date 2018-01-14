@@ -1,8 +1,8 @@
 class LuisCommands(object):
 
-    none = "None"
-    confirm = "Confirm"
-    cancel = "Cancel"
+    none = "none"
+    confirm = "confirm"
+    cancel = "cancel"
 
     @staticmethod
     def is_action(intent):

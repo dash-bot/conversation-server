@@ -73,6 +73,7 @@ class LUISResponse:
             self._dialog = None
 
         self._intents = []
+        self.json = response
         self._entities = []
         self._composite_entities = []
 
