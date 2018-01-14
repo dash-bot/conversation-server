@@ -7,6 +7,7 @@ from luis_sdk.luis_response import LUISResponse
 
 app = Flask(__name__)
 app.secret_key = '\xe2\xd2\xfeSIM\x93\xad\x1b\x8bGgn{V\xd0\x00\x8f\x13\x95dr\xeeT'
+application = app
 
 # TODO get these, then hide them
 APPID = "a754fc42-56f2-434a-a56b-8818c3df71f5"
