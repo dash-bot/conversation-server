@@ -4,6 +4,7 @@ import commands
 import confirmations
 from luis_command_names import LuisCommands
 app = Flask(__name__)
+application = app
 
 # TODO get these, then hide them
 APPID = "a754fc42-56f2-434a-a56b-8818c3df71f5"
