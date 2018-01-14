@@ -26,7 +26,7 @@ def get_command():
     reply = CLIENT.predict(command)
     # error checking here
 
-    intent = reply.get_top_intent().get_name().lower()
+    intent = camelCase(reply.get_top_intent().get_name())
     print("Intent: ", intent)
     if LuisCommands.is_confirmation(intent):
         if session['prev_reply']:
@@ -34,6 +34,7 @@ def get_command():
             print("Previous Intent: ", prev_reply.get_top_intent().get_name())
         else:
             prev_reply = None
+        session['prev_reply'] = None
         return confirm_cancel_request(intent, prev_reply)
     elif LuisCommands.requires_confirm(intent):
         confirm_reply = getattr(confirmations, intent)
@@ -45,11 +46,15 @@ def get_command():
         return action(reply)
 
 
+def camelCase(str):
+    return str[0].lower() + str[1:]
+
+
 def confirm_cancel_request(intent, prev_reply):
     if prev_reply is None:
         return commands.none(None)
     if LuisCommands.is_confirm(intent):
-        prev_intent = prev_reply.get_top_intent().get_name().lower()
+        prev_intent = camelCase(prev_reply.get_top_intent().get_name())
         action = getattr(commands, prev_intent)
         return action(prev_reply)
     else:

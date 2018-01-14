@@ -4,7 +4,7 @@ class LuisCommands(object):
     confirm = "confirm"
     cancel = "cancel"
 
-    confirm_commands = []
+    confirm_commands = ["transferOut"]
 
     @staticmethod
     def requires_confirm(intent):
