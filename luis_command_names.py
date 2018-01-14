@@ -12,7 +12,7 @@ class LuisCommands(object):
 
     @staticmethod
     def is_action(intent):
-        return not LuisCommands.requires_confirm(intent)
+        return not LuisCommands.is_confirm(intent)
 
     @staticmethod
     def is_confirm(intent):
