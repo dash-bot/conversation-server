@@ -1,0 +1,10 @@
+{
+    "production": {
+        "app_function": "flask_app.app",
+        "aws_region": "us-west-2",
+        "profile_name": "default",
+        "project_name": "conversation-se",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-te1f2ih69"
+    }
+}
